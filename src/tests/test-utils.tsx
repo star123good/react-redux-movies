@@ -9,12 +9,18 @@ const AllTheProviders: FC<{children: React.ReactNode}> = ({children}) => {
         {children}
     </Provider>
   )
-}
+};
 
 const customRender = (
   ui: ReactElement,
   options?: Omit<RenderOptions, 'wrapper'>,
-) => render(ui, {wrapper: AllTheProviders, ...options})
+) => render(ui, {wrapper: AllTheProviders, ...options});
+
+global.fetch = jest.fn(() =>
+  Promise.resolve({
+    json: () => Promise.resolve({ test: 100 }),
+  }),
+) as jest.Mock;
 
 export * from '@testing-library/react';
 export {customRender as render}

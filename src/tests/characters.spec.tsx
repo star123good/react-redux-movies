@@ -4,7 +4,12 @@ import Characters from '../components/Characters';
 
 const renderCharacters = (): RenderResult => render(<Characters />);
 
-test('render characters', () => {
-    renderCharacters();
-    expect(screen.getByText(/no user/i)).toBeInTheDocument();
+describe('testing characters', () => {
+    beforeEach(() => {
+        renderCharacters();
+    })
+   
+    it('render characters', () => {
+        screen.queryByText('[id="select-characters"]');
+    })
 });
