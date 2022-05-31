@@ -1,11 +1,26 @@
 import React, { useEffect } from "react";
 import { FormControl, InputLabel, Select, MenuItem } from "@mui/material";
+import Character from "../models/Character";
 import useCharacter from "../hooks/useCharacter";
-import { Character } from "../models/Character";
+import useMovie from "../hooks/useMovie";
 
 export default function Characters() {
 
-    const { characters, selected, fetchCharacters } = useCharacter();
+    const { characters, selected, fetchCharacters, select } = useCharacter();
+    const { fetchMovies } = useMovie();
+
+    const handleSelect = (e: any) => {
+        const value: string = e.target.value;
+        if (selected?.url !== value) {
+            select(value);
+        }
+    };
+
+    useEffect(() => {
+        if (selected) {
+            fetchMovies(selected.films);
+        }
+    }, [selected, fetchMovies]);
 
     useEffect(() => {
         fetchCharacters();
@@ -17,7 +32,7 @@ export default function Characters() {
             <Select
                 id="select-characters"
                 value={(selected ? selected.url : "")}
-                // onChange={handleChange}
+                onChange={handleSelect}
                 label="Character:"
                 displayEmpty
             >

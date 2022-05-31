@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import characterSlice from "./reducers/characterSlice";
+import movieSlice from "./reducers/movieSlice";
 
 export const store = configureStore({
     reducer: {
         character: characterSlice,
+        movie: movieSlice,
     },
 });
 

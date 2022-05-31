@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { Character } from "../../models/Character";
+import Character from "../../models/Character";
 import { fetchCharacters } from "../actions/characterAction";
 
 interface CharacterSlice {
@@ -19,10 +19,10 @@ export const characterSlice = createSlice({
     initialState,
     reducers: {
         select: (state, action) => {
-            if (typeof action.payload === 'number' && action.payload >= 0 && action.payload < state.values.length) {
-                state.selected = state.values[action.payload];
+            if (typeof action.payload === 'string') {
+                const found = state.values.find((ch: Character) => ch.url === action.payload);
+                if (found) state.selected = found;
             }
-            else state.selected = null;
         },
     },
     extraReducers: builder => {
