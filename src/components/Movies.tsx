@@ -11,6 +11,9 @@ const CustomizedBox = styled(Box)`
         height: 300px;
         overflow-y: auto;
         border: 1px solid #CCCCCC;
+        & .MuiListItem-root:hover {
+            background-color: rgba(204, 204, 204, 0.38);
+        }
     }
 `;
 

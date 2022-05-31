@@ -6,6 +6,10 @@ import useMovie from "../hooks/useMovie";
 const CustomizedBox = styled(Box)`
     width: 300px;
     margin-top: 30px;
+    & .MuiTypography-root.result {
+        text-decoration: underline;
+        font-size: 1.3rem;
+    }
 `;
 
 export default function LastMovie() {
@@ -16,7 +20,7 @@ export default function LastMovie() {
         <CustomizedBox>
             <Typography>Name / Year last Movie:</Typography>
             {
-                last && <Typography>{last.title} - {last.release_date.slice(0, 4)}</Typography>
+                last && <Typography className="result">{last.title} - {last.release_date.slice(0, 4)}</Typography>
             }
         </CustomizedBox>
     )
